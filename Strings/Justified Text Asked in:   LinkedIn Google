@@ -1,0 +1,30 @@
+#define pb push_back
+vector<string> Solution::fullJustify(vector<string> &A, int B) {
+    vector< string > ans;
+    int n = A.size();
+    for(int j = 0; j < n; j++){
+        int len = A[j].length(), st = j;
+        while(j+1 < n && (len + A[j+1].length() + 1) <= B) j++, len += A[j].length()+1;
+        int wrds = (j - st + 1), lft = B - len;
+        string cur = "";
+        if(wrds == 1){
+            cur += A[j];
+            while(lft--) cur += ' ';
+        }
+        else{
+            int t = 0;
+            if(j == n-1) t = lft , lft = 0;
+            int each = lft / (wrds - 1) + 1;
+            lft = lft - (each - 1)*(wrds-1);
+            for(int i = st; i < j; i++){
+                cur += A[i];
+                for(int k = 0; k < each; k++) cur += ' ';
+                if(lft) cur += ' ', lft--;
+            }
+            cur += A[j];
+            while(t--) cur += ' ';
+        }
+        ans.pb(cur);
+    }
+    return ans;
+}
