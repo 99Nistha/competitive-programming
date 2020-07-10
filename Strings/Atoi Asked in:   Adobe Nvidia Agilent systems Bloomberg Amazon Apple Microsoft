@@ -1,0 +1,40 @@
+int Solution::atoi(const string A) {
+    long long int x=0;
+    string B=A;
+    int i=0;
+    bool negative=false;
+    while(B[i]==' ')
+    {
+        i++;
+    }
+    while(B[i]=='+' || B[i]=='-')
+    {
+        if(B[i]=='-')
+        {
+            negative=true;
+        }
+        i++;
+    }
+    
+    while(B[i]!=' ' && B[i]!='\0'&& B[i]-'0'>=0 && B[i]-'0'<=9)
+    {
+        x=x*10+(B[i]-'0');
+        if(x>INT_MAX)
+        {
+            if(negative)
+            {
+                return INT_MIN;
+            }
+            else
+            {
+                return INT_MAX;
+            }
+        }
+        i++;
+    }
+    if(negative)
+    {
+        return (-1)*x;
+    }
+    return x;
+}
