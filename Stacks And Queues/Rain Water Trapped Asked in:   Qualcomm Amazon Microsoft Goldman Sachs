@@ -1,0 +1,20 @@
+int Solution::trap(const vector<int> &A) {
+stack<int> st;
+int water=0,distance,height;
+for(int i=0;i<A.size();i++)
+{
+while(!st.empty() && A[st.top()]<A[i])
+{
+int top=st.top();
+st.pop();
+if(!st.empty())
+{
+distance=i-st.top()-1;
+height=min(A[i],A[st.top()])-A[top];
+water+=distance*height;
+}
+}
+st.push(i);
+}
+return water;
+}
