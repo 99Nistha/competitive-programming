@@ -1,0 +1,16 @@
+int Solution::strStr(const string A, const string B) {// quetion is asking id b is there in a and when did it first occu
+        int m=A.size();
+        int n=B.size();
+        for(int i=0;i<=m-n;i++){
+            int j=0;
+            for(j=0;j<n;j++){
+                if(A[i+j]!=B[j]){
+                    break;
+                }
+            }
+            if(j==n){
+                return i;
+            }
+        }
+        return -1;
+}
