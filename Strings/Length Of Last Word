@@ -1,0 +1,18 @@
+int Solution::lengthOfLastWord(const string s) {
+    int n=s.size();
+    //if there is spaces at end  "---"
+    while(!isalpha(s[n-1]) &&n>=0){
+        n--;
+    }
+    if(n==0){
+        return 0;
+    }
+    int i=n-1;
+    while(isalpha(s[i])){
+        i--;
+    }
+    return n-i-1;
+}
+//"Hello World  "
+//n=5;
+//i=4, i=-1
