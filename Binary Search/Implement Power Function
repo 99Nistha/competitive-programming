@@ -1,0 +1,36 @@
+#define ll long long int
+int Solution::pow(int base, int expo, int m) {
+    if(m==1) return 0;
+    ll ans=1,y=base%m;
+    while(expo>0){
+        if(expo&1)// nnot divisible by 2
+         ans=((ans)*y)%m;
+        y=(y*y)%m;
+        if(y<0) y+=m;
+        expo=expo>>1;
+    }
+    if(ans<0){
+        ans=(m-abs(ans)%m);
+        return ans;
+    }
+    return ans%m;
+}
+int Solution::pow(int x, int n, int d) {
+    if(n==1)
+    {
+        if(x<0)
+        return (x%d)+d;
+        return x;
+    }
+    if(n==0 && x==0)
+    return 0;
+    if(n==0)
+    return 1%d;
+    long long temp = pow(x,n/2,d)%d;
+    long long mul = (temp * temp)%d;
+    if(mul<0)
+    mul = mul + d;
+    if(n%2==0)
+    return mul;
+    return (mul*x)%d;
+}
