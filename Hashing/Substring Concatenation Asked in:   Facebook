@@ -1,4 +1,17 @@
 vector<int> Solution::findSubstring(string s, const vector<string> &B) {
+    /*  s: "barfoothefoobarman"
+        words: ["foo", "bar"]
+        [0,9]
+        counts foo 1
+               bar 1
+        n=length of s= 18
+        num= number of words= 2
+        len= length of words=3
+        indexes
+        loop till(last 6 digits/ combo excluded)
+        word= 
+        seen  
+    */
     vector<string> words=B;
     unordered_map<string, int> counts;
     for (string word : words)
@@ -9,15 +22,15 @@ vector<int> Solution::findSubstring(string s, const vector<string> &B) {
         unordered_map<string, int> seen;
         int j = 0;
         for (; j < num; j++) {
-            string word = s.substr(i + j * len, len);
+            string word = s.substr(i + j * len, len);   //0,3 //3,3=> bar, foo  //1,3 //4,3
             if (counts.find(word) != counts.end()) {
-                seen[word]++;
-                if (seen[word] > counts[word])
+                seen[word]++;            //2
+                if (seen[word] > counts[word])   //2>1
                     break;
             }
             else break;
         }
-        if (j == num) indexes.push_back(i);
+        if (j == num) indexes.push_back(i);   //0,9
     }
     return indexes;
 }
