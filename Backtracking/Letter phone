@@ -17,6 +17,9 @@ void driver(string A, vector<string> &sol, string &curr, int n){
 
 vector<string> Solution::letterCombinations(string A) {
     vector<string> sol;
+    if(A.length()==0){
+     return sol;
+    }
     string curr;
     driver(A, sol, curr, 0);
     return sol;
