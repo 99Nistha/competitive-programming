@@ -1,0 +1,23 @@
+vector<string> mp{
+    "0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"
+};
+
+void driver(string A, vector<string> &sol, string &curr, int n){
+    if(n==A.size()){
+        sol.push_back(curr);
+        return;
+    }
+    int num = A[n]-'0';
+    for(int i=0; i<mp[num].length(); i++){
+        curr.push_back(mp[num][i]);
+        driver(A, sol, curr, n+1);
+        curr.pop_back();
+    }
+}
+
+vector<string> Solution::letterCombinations(string A) {
+    vector<string> sol;
+    string curr;
+    driver(A, sol, curr, 0);
+    return sol;
+}
