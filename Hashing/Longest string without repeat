@@ -1,10 +1,19 @@
 int Solution::lengthOfLongestSubstring(string A) {
     //"abcabcbb" is "abc", which the length is 3.
+    //n=8, len=0, j=-1
+    //i=0 len=1  ump  a  0(a at what position)//a
+    //i=1  len=2  ump b 1  //ab
+    //i=2  len=3   ump  c  2  //abc
+    // i=3  len=3   ump  a  3    //bca   j=0
+    //i=4   len=3   ump  b  4  // cab  j=1
+    //i=5   len=3    ump c 5   //abc  j=2   
+    //i=6  len=3  ump b  6   j=4
+    //i=7  len=3  ump b 7     j=6
     int n= A.length();
     unordered_map<char,int > ump;
     int len=0,j=-1;
     for(int i=0;i<n;i++){
-        if(ump.find(A[i])!=ump.end()){
+        if(ump.find(A[i])!=ump.end()){  // do we have that char in unordered map
             j=max(ump[A[i]],j);  
         }
         len=max(i-j,len);
