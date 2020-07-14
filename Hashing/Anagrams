@@ -1,0 +1,21 @@
+vector<vector<int> > Solution::anagrams(const vector<string> &A) {
+    //Input : cat dog god tca
+   // Output : [[1, 4], [2, 3]]
+   // m  string vector
+   // m->   act  1   dgo 2  dgo    3  act   4
+   
+    unordered_map<string,vector<int>>m;
+    vector<vector<int>>ans;
+    
+    for(int i=0;i<A.size();i++)
+    {
+        string s = A[i];
+        sort(s.begin(),s.end());
+        m[s].push_back(i+1);
+    }
+ 
+    for(auto i:m){  //use for traversing map
+        ans.push_back(i.second);   // i.second means the int part of map
+    }
+    return ans;
+}
