@@ -1,0 +1,19 @@
+vector<int> Solution::solve(TreeNode* A) {
+TreeNode *root=A;
+queue<TreeNode *> q;
+q.push(root);
+vector<int> v;
+while(q.size()!=0)
+{
+    root=q.front();
+    q.pop();
+    while(root!=NULL)
+    {
+        v.push_back(root->val);
+        if(root->left!=NULL)
+        q.push(root->left);
+        root=root->right;
+    }
+}
+return v;
+}
