@@ -1,0 +1,22 @@
+/*       1
+        / \
+       2   5
+      / \   \
+     3   4   6*/
+
+TreeNode* PREV=NULL;
+void solve(TreeNode* root){
+    if(!root)
+        return;
+    solve(root->right);
+    solve(root->left);
+    root->left=NULL;
+    root->right=PREV;
+    PREV=root;
+}
+TreeNode* Solution::flatten(TreeNode* A) {
+    if(!A) return NULL;
+    PREV=NULL;
+    solve(A);
+    return PREV;
+}
