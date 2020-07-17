@@ -1,0 +1,12 @@
+int Solution::maxProfit(const vector<int> &A) {
+    if(A.empty())
+        return 0;
+    int n = A.size();
+    int diff=0;
+    for(int i=1;i<n;i++){
+        if(A[i]>A[i-1]){
+            diff+= A[i]-A[i-1];
+        }
+    }
+    return diff;
+}
