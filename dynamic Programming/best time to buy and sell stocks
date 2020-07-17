@@ -1,0 +1,22 @@
+int Solution::maxProfit(const vector<int> &A) {
+int maxp = 0, min = INT_MAX;
+
+for(int i =0;i<A.size();i++)
+{
+    if(A[i] < min)
+    {
+        min = A[i];
+    }else{
+        maxp = max(maxp,A[i] - min);
+    }
+}
+
+return maxp;
+}
+/* A = [1, 4, 5, 2, 4]
+i=0  min=1, maxp=0
+i=1  min=1, maxp=3
+i=2  min=1, maxp=4
+i=3  min=1, maxp=4
+i=4  min=1, maxp=4
+*/
