@@ -1,0 +1,16 @@
+int Solution::fibsum(int k) {
+    //1 1 2 3 5 8 13 21, k=19
+    //f1=0/1/1/2/3/5/8/13, f2=1/1/2/3/5/8/13/21, 
+    //return 1+fibsum(6)
+    //f1=0/1/2/3/5, f2=1/2/3/5/8
+    //return 1+(1+ fibsum(1))
+    //f1=0/1/1, f2=1/1/2
+    //1+0->3
+    int f1 = 0, f2 = 1;
+    while (f2 <= k) {
+        swap(f1, f2);
+        f2 += f1;
+    }
+    return 1 + (k == f1 ? 0 : fibsum(k - f1));
+}
+b
