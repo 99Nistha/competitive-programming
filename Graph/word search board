@@ -1,0 +1,24 @@
+bool dfs(int i,int j, string &b,vector<string> &a, int idx)
+{
+    if(idx == b.length()) return 1;
+    if(i<0 || j<0 || i>=a.size() || j>=a[0].size() || a[i][j] != b[idx]) return 0;
+    ++idx;
+    return dfs(i+1,j,b,a,idx) || dfs(i,j+1,b,a,idx)||dfs(i-1,j,b,a,idx) || dfs(i,j-1,b,a,idx);
+}
+
+int Solution::exist(vector<string> &a, string b) {
+    if(b.empty()) return 1;
+    if(a.empty()) return 0;
+    for(int i=0; i<a.size(); i++)
+    {
+        for(int j=0; j<a[0].size(); j++)
+        {
+            if(a[i][j] == b[0] && dfs(i,j,b,a,0))
+            {
+                return 1;
+            }
+            
+        }
+    }
+    return 0;
+}
