@@ -1,0 +1,11 @@
+int Solution::canJump(vector<int> &A) {
+    int n=A.size();
+    int r=0;//rechable
+    for(int i=0;i<n;i++){
+        if(r<i){
+            return 0;
+        }
+        r=max(r,i+A[i]);
+    }
+    return 1;
+}
