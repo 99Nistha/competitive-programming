@@ -1,0 +1,27 @@
+int dfs(int i,int j, vector<string> &a)
+{
+    if(i<0 || j<0 || i>=a.size() || j>=a[0].size() || a[i][j] != 'X') return 0;
+    a[i][j] = 'O';
+    dfs(i+1,j,a);
+    dfs(i,j+1,a);
+    dfs(i-1,j,a);
+    dfs(i,j-1,a);
+    return 1;
+}
+int Solution::black(vector<string> &a) {
+    int m = a.size();
+    int n = a[0].size();
+    int ans=0;
+    if(m==0) return ans;
+    for(int i=0; i<m; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            if(a[i][j] == 'X')
+            {
+                ans+= dfs(i,j,a);
+            }
+        }
+    }
+    return ans;
+}
