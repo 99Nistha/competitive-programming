@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int maxCount=nums[0];//2
+        int minCount= nums[0];//2
+        int ans= nums[0];//2
+        for(int i=1;i<nums.size();i++){
+            if(nums[i]<0){
+                swap(minCount, maxCount);
+            }
+            maxCount= max(nums[i], maxCount*nums[i]);//6//3//-2,-6//-2//4
+            minCount= min(nums[i], minCount*nums[i]);//3//6//-2, -12//-12//-48
+            ans= max(ans, maxCount);//6//6//6
+        }
+        return ans;//6
+    }
+};
+/*Input: [2,3,-2,4]
+Output: 6*/
