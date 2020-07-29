@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int longestValidParentheses(string A) {
+        int n= A.length();
+        int longest=0;
+        stack<int> s;
+        for(int i=0;i<n;i++){
+            if(A[i]=='(') s.push(i);
+            else{
+                if(!s.empty()){
+                    if(A[s.top()]=='(') s.pop();
+                    else s.push(i);
+                }
+                else s.push(i);
+            }
+        }// now we are left with the indeces of A, which have no match
+        if(s.empty()) longest=n;
+        else{
+            int a=n, b=0;
+            while(!s.empty()){
+                b= s.top();
+                s.pop();
+                longest= max(longest, a-b-1);
+                a=b;
+            }
+            longest= max(longest,a);
+        }
+        return longest;
+    }
+};
