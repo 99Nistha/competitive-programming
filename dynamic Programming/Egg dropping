@@ -1,0 +1,13 @@
+/* A = 2 eggs
+ B = 10  floor*/
+int Solution::solve(int A, int B) {
+    vector<vector<int>> dp(B+1, vector<int>(A+1,0));// dp(11,3)
+    int m=0;
+    while(dp[m][A]<B){
+        m++;
+        for(int k=1;k<=A;k++){
+            dp[m][k]= dp[m-1][k]+ dp[m-1][k-1]+1;
+        }
+    }
+    return m;
+}
