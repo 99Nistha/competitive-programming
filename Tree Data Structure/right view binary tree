@@ -1,0 +1,34 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+vector<int> Solution::solve(TreeNode* A) {
+    vector<int>res;
+    queue<TreeNode*> q;
+    if(A==NULL){
+        return res;
+    }
+    q.push(A);
+    while(!q.empty()){
+        int n=q.size();
+        for(int i=0;i<n;i++){
+            TreeNode* current= q.front();
+            q.pop();
+            if(i==n-1){
+                res.push_back(current->val);
+            }
+            if(current->left!=NULL){
+                q.push(current->left);
+            }
+            if(current->right!=NULL){
+                q.push(current->right);
+            }
+        }
+    }
+    return res;
+}
