@@ -1,0 +1,13 @@
+void printLeftview(bool *levels, Node *root, int curr)
+{
+    if(!root)
+        return;
+    
+    if(levels[curr]==false)
+    {
+        levels[curr] = true;
+        cout<<root->data<<" ";
+    }
+    printLeftview(levels,root->left,curr+1);    //left child called
+    printLeftview(levels,root->right,curr+1);   //right child called
+}
