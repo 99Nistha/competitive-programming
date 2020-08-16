@@ -1,0 +1,9 @@
+vector<int> largestSubarray(vector<int> A, int K) {
+    int id=0;
+    for (int i=0; i<=A.size()-K; i++) {
+        if (A[id]<A[i]) {
+            id=i;
+        }
+    }
+    return vector<int>(A.begin()+id,A.begin()+id+K);
+}
