@@ -1,0 +1,70 @@
+// Modify the original string
+/*
+vector<string> split(string s, string delimiter) {
+	vector<string> res;
+	int pos = 0;
+	while((pos = s.find(delimiter)) != string::npos) {
+		res.push_back(s.substr(0, pos););
+		s.erase(0, pos + delimiter.size());
+	}
+	res.push_back(s);
+	return res;
+}
+*/
+
+// Without modifying original string
+vector<string> split(string s, string delimiter) {
+	vector<string> res;
+	size_t last = 0, next = 0;
+	while ((next = s.find(delimiter, last)) != string::npos) { 
+		res.push_back(s.substr(last, next - last)); 
+		last = next + 1; 
+	} 
+	res.push_back(s.substr(last));
+	return res;
+}
+
+vector<int> generateMinCharCount(vector<string> v) {
+	vector<int> freq;
+
+	for (string &s : v) {
+		char minChar = 'z';
+		char count = 0;
+		for (char c : s) {
+			if (c == minChar) {
+				++count;
+			} else if (c < minChar) {
+				minChar = c;
+				count = 1;
+			}
+		}
+		freq.push_back(count);
+	}
+
+	return freq;
+}
+
+vector<int> compareStrings(string strA, string strB) {
+	vector<string> A = split(strA, " "), B = split(strB, " ");
+	int M = A.size(), N = B.size();
+	vector<int> freqA = generateMinCharCount(A);
+	vector<int> freqB = generateMinCharCount(B);
+	
+	vector<int> res;
+	for(auto countB : freqB) {
+		int smaller_count = 0;
+		for(auto countA : freqA) {
+			if (countA < countB) ++smaller_count;
+		}
+		res.push_back(smaller_count);
+	}
+
+	return res;
+}
+
+int main() {
+	string strA = "abcd aabc bd";
+	string strB = "aaa aa";
+	auto res = compareStrings(strA, strB);
+	for(int i : res) cout << i << " ";
+}
