@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+int ans=INT_MIN;
+
+void findMaxUtil(vector<int> v,int i, int total,int curSum){
+  if(curSum>total) return;
+  ans=max(ans, curSum);
+  if(i>=v.size()) return;
+
+  for(int j=i;j<v.size();j++){
+    if(v[j]>total) continue;
+    findMaxUtil(v,j+2, total, curSum+v[j]);
+    findMaxUtil(v,j+1,total,curSum);
+  }
+
+}
+
+int findMax(vector<int> v, int total){
+  vector<bool> visited(v.size(), false);
+  findMaxUtil(v,0,total,0);
+}
+
+int main(){
+    int total,n;
+    cin>>total>>n;
+    vector<int> v(n);
+    for(int i=0;i<n;i++){
+      cin>>v[i];
+    }
+    int result=findMax(v,total);
+    cout<<ans;
+    return 0;
+}
